@@ -1,0 +1,37 @@
+<mvc:View
+    controllerName="ns.mitigations.controller.Object"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic">
+
+    <semantic:SemanticPage
+        id="semanticPage"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        busy="{objectView>/busy}"
+        busyIndicatorDelay="{objectView>/delay}">
+
+        <semantic:titleHeading>
+            <Title text="{description}" />
+        </semantic:titleHeading>
+
+        <semantic:headerContent>
+            <ObjectNumber />
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button id="edit" text="{i18n>EDIT}" enabled="true" press="_onEditPress" />
+                <Button id="delete" text="{i18n>DELETE}" enabled="true" press="_onDeletePress" />
+                <Button id="save" text="{i18n>SAVE}" type="Emphasized" visible="false"
+                    press="_onSavePress" />
+                <Button id="cancel" text="{i18n>CANCEL}" visible="false" type="Reject"
+                    press="_onCancelPress" />
+            </Toolbar>
+        </semantic:headerContent>
+
+        <Page id="page">
+        </Page>
+    </semantic:SemanticPage>
+
+</mvc:View>
