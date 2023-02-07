@@ -25,7 +25,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: cap-bookshop-backend-db
-      - name: cap-bookshop-backend-auth
+      - name: cap-bookshop-backend-uaa
 
   - name: cap-bookshop-backend-db-deployer
     type: hdb
@@ -41,12 +41,21 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: cap-bookshop-backend-auth
+  - name: cap-bookshop-backend-uaa
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: cap-bookshop-backend-${org}-${space}
+        xsappname: cap-bookshop-backend-${space}    #  name + space dependency
         tenant-mode: dedicated
+        role-collections:
+          - name: 'RiskManager-${space}'
+            description: Manage Risks
+            role-template-references:
+              - $XSAPPNAME.RiskManager
+          - name: 'RiskViewer-${space}'
+            description: View Risks
+            role-template-references:
+              - $XSAPPNAME.RiskViewer
