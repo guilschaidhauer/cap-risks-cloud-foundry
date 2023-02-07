@@ -41,6 +41,13 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: cap-bookshop-backend-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
   - name: cap-bookshop-backend-uaa
     type: org.cloudfoundry.managed-service
     parameters:
