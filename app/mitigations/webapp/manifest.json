@@ -15,6 +15,18 @@
       "version": "1.8.4",
       "toolsId": "82fbb1a6-26e6-4a03-a2b7-5c4a249b4b0a"
     },
+    "crossNavigation": {
+      "inbounds": {
+        "Mitigations-display": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Mitigations",
+          "action": "display"
+        }
+      }
+    },
     "dataSources": {
       "mainService": {
         "uri": "/service/risk/",

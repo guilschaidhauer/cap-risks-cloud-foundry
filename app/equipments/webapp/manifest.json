@@ -15,6 +15,18 @@
       "version": "1.8.4",
       "toolsId": "a1beb2b2-3a6c-471e-bf58-c79cbf1a6c01"
     },
+    "crossNavigation": {
+      "inbounds": {
+        "Equipments-display": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Equipments",
+          "action": "display"
+        }
+      }
+    },
     "dataSources": {
       "mainService": {
         "uri": "/service/risk/",
