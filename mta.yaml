@@ -48,6 +48,11 @@ resources:
       service-plan: lite
       config:
         HTML5Runtime_enabled: true
+  - name: cap-bookshop-backend-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
   - name: cap-bookshop-backend-uaa
     type: org.cloudfoundry.managed-service
     parameters:
