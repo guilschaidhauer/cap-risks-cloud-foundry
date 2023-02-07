@@ -35,6 +35,44 @@ modules:
     requires:
       - name: cap-bookshop-backend-db
 
+   - name: cap-bookshop-backend-destinations
+   type: com.sap.application.content
+   requires:
+     - name: cap-bookshop-backend-uaa
+       parameters:
+         service-key:
+           name: cap-bookshop-backend-uaa-key
+     - name: cap-bookshop-backend-html5-repo-host
+       parameters:
+         service-key:
+           name: cap-bookshop-backend-html5-repo-host-key
+     - name: srv-api
+     - name: cap-bookshop-backend-destination
+       parameters:
+         content-target: true
+   parameters:
+     content:
+       instance:
+         destinations:
+           - Authentication: OAuth2UserTokenExchange
+             Name: cap-bookshop-backend-app-srv
+             TokenServiceInstanceName: cap-bookshop-backend-uaa
+             TokenServiceKeyName: cap-bookshop-backend-uaa-key
+             URL: '~{srv-api/srv-url}'
+             sap.cloud.service: cap-bookshop-backend.service
+           - Name: cap-bookshop-backend-html5-repo-host
+             ServiceInstanceName: cap-bookshop-backend-html5-repo-host
+             ServiceKeyName: cap-bookshop-backend-html5-repo-host-key
+             sap.cloud.service: cap-bookshop-backend.service
+           - Authentication: OAuth2UserTokenExchange
+             Name: cap-bookshop-backend-uaa
+             ServiceInstanceName: cap-bookshop-backend-uaa
+             ServiceKeyName: cap-bookshop-backend-uaa-key
+             sap.cloud.service: cap-bookshop-backend.service
+         existing_destinations_policy: update
+   build-parameters:
+     no-source: true
+
 resources:
   - name: cap-bookshop-backend-db
     type: com.sap.xs.hdi-container
