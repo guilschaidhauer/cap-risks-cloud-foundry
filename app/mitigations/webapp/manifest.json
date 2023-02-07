@@ -154,5 +154,9 @@
       "async": true,
       "id": "app"
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "cpapp.service"
   }
 }
