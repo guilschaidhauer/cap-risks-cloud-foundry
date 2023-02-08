@@ -1,48 +1,52 @@
 {
-  "name": "cap-bookshop-backend",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^6",
-    "express": "^4",
-    "hdb": "^0.19.0",
-    "@sap/xssec": "^3",
-    "passport": "^0"
-  },
-  "devDependencies": {
-    "@sap/ux-specification": "^1.102.14",
-    "sqlite3": "^5.0.4"
-  },
-  "engines": {
-    "node": "^16"
-  },
-  "scripts": {
-    "start": "cds run",
-    "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-mitigations": "cds watch --open mitigations/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-equipments": "cds watch --open equipments/webapp/index.html?sap-ui-xx-viewCache=false"
-  },
-  "sapux": [
-    "app/risks",
-    "app/mitigations",
-    "app/equipments"
-  ],
-  "cds": {
-    "requires": {
-      "[production]": {
-        "db": {
-          "kind": "hana-cloud"
-        },
-        "auth": {
-          "kind": "xsuaa"
+    "name": "cap-bookshop-backend",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^6",
+        "express": "^4",
+        "hdb": "^0.19.0",
+        "@sap/xssec": "^3",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.102.14",
+        "sqlite3": "^5.0.4",
+        "rimraf": "^3.0.2"
+    },
+    "engines": {
+        "node": "^16"
+    },
+    "scripts": {
+        "start": "cds run",
+        "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-mitigations": "cds watch --open mitigations/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-equipments": "cds watch --open equipments/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy cap-bookshop-backend --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "sapux": [
+        "app/risks",
+        "app/mitigations",
+        "app/equipments"
+    ],
+    "cds": {
+        "requires": {
+            "[production]": {
+                "db": {
+                    "kind": "hana-cloud"
+                },
+                "auth": {
+                    "kind": "xsuaa"
+                }
+            },
+            "db": {
+                "kind": "sql"
+            }
         }
-      },
-      "db": {
-        "kind": "sql"
-      }
     }
-  }
 }
