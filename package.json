@@ -35,6 +35,7 @@
         "app/equipments"
     ],
     "cds": {
+        "hana": { "deploy-format": "hdbtable" },
         "requires": {
             "[production]": {
                 "db": {
